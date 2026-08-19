@@ -1,0 +1,210 @@
+user: salom
+bot: Salom! Sizga qanday yordam bera olaman? 😊
+
+user: nima gaplar
+bot: O'zbekcha salom! 😊
+
+"Nima gaplar?" — degani "Nima yangiliklar?" yoki "Qandaysiz?" degan ma'noda.
+
+Javob: Hammasi joyida, rahmat! O'zingizdan nima gap?
+
+Biror yangilik bormi yoki yordam kerakmi? 😄
+
+user: Tinch — degani "tinchlik", "osoyishta" yoki "xotirjam" maʼnosida.
+
+"Tinch" deyishingizga qarab, hammasi joyida, hayot tinch-o'xshab demoqchisiz shekilli 😄
+
+O'zingizchi? Ishlar qanday, tinchmi yoki qandaydir shovqin bormi? Agar gaplashmoqchi bo'lsangiz, men tayyorman! 🌿
+
+user: ha
+bot: Ha! 👋 Nima gaplar? Bugun sizga qanday yordam bera olaman?
+
+user: sen kimsan? , sen kimsan
+bot: Men DEXO CHAT BOT  — yordamchisiman! 😊
+
+DEXO kompaniyasi tomonidan yaratilganman va sizga savollarga javob berish, maslahatlar, tushuntirishlar va boshqa ko'p narsalarda yordam berish uchun shu yerdaman.
+
+Sizga qanday yordam bera olaman? 🇺🇿
+
+user: youtube nima?
+bot: YouTube – bu dunyodagi eng yirik video almashish platformasi boʻlib, u yerda foydalanuvchilar video koʻrishi, yuklashi va baham koʻrishi mumkin. 2005-yilda asos solingan, hozir Google’ga tegishli.
+
+Asosiy xususiyatlari:
+
+· Bepul kontent (reklamalar bilan) va reklamasiz Premium versiya.
+· Turli formatlar: qisqa videolar (Shorts), jonli efirlar, uzoq metrajli roliklar, filmlar.
+· Har xil mavzular: taʼlim, musiqiy kliplar, vloglar, oʻyinlar, yangiliklar va boshqalar.
+· Ijodkorlar uchun reklama orqali pul ishlash imkoniyati (monetizatsiya).
+· Shaxsiy tavsiyalar – sunʼiy intellekt sizning qiziqishingizga mos videolarni taklif qiladi.
+
+Bugungi kunda u Internetdagi 2-eng koʻp tashrif buyuriladigan sayt (Google’dan keyin) va raqamli madaniyatning markaziga aylangan.
+
+user: Youtube monetizatsiya haqida maʼlumot ber 
+bot: YouTube'da pul ishlash (monetizatsiya) asosan YouTube Hamkorlik Dasturi (YPP) orqali amalga oshadi. 2026-yil avgust oyida e'lon qilingan muhim o'zgarishlar 2027-yil 1-fevraldan kuchga kiradi .
+
+📈 Kirish talablari (2027-yildan boshlab)
+
+Yangi ijodkorlar uchun talablar sezilarli darajada oshirildi :
+
+· Uzun videolar (Long-form): Oxirgi 365 kun ichida 8000 soat tomosha vaqti va 1000 ta obunachi .
+· Shortslar (Shorts): Oxirgi 90 kun ichida 20 million marta ko‘rilish va 1000 ta obunachi .
+
+Eslatma: Avvalgi talablar 4000 soat yoki 10 million Shorts ko‘rilishi edi .
+
+🎯 Shortslar uchun yangi qoida
+
+Shortslardan daromad olishda davom etish uchun har 90 kunlik davrda kamida 10 million ko‘rilishni saqlab turish kerak . Agar bu ko‘rsatkich pasaysa, kanal YPPda qoladi va uzun videolardan daromad olishda davom etadi, lekin Shorts daromadi tiklanmaguncha to‘xtatiladi .
+
+💰 Daromad manbalari va taqsimot
+
+YPP orqali bir necha usulda daromad topish mumkin :
+
+· Reklama daromadi: Uzun videolardan tushgan daromadning 55% ijodkorga, Shortslardan esa 45% ijodkorga beriladi .
+· Premium obuna: Premium va Premium Lite obunalaridan tushgan sof daromat maxsus jamg‘armaga yig‘iladi va tomosha vaqtiga qarab taqsimlanadi .
+· Muxlislar xayriyalari: "Channel Memberships" va "Super Chat" kabi xususiyatlar .
+
+🧐 Asosiy sifat talablari
+
+YPPga qabul qilishda kanal butunlay tekshiriladi . Kontent quyidagi talablarga javob berishi shart :
+
+· Original va haqiqiy bo‘lishi (boshqalarnikidan olingan kontent sezilarli darajada o‘zgartirilgan bo‘lishi kerak) .
+· Ommaviy ishlab chiqarilgan, takroriy yoki manipulyativ bo‘lmasligi .
+
+Tekshiruvda kanalning asosiy mavzusi, eng ko‘p ko‘rilgan videolari va metama'lumotlari (sarlavha, eskiz) o‘rganiladi .
+
+🚀 Amaliy qadamlar
+
+1. Google AdSense hisobini kanalga ulash .
+2. YouTube studiyasining "Earn" (Daromad) bo‘limidan ariza topshirish .
+3. Kanal avtomatik va insoniy tekshiruvdan o‘tadi (odatda bir oy davom etadi) .
+
+Yangi talablar 2027-yil fevralidan boshlab joriy qilinadi, shuning uchun hozirdan sifatli va original kontent yaratishga e'tibor qaratish eng muhimi.
+
+
+user: telegram monetizatsiya haqida maʼlumot ber
+bot: Telegramda pul ishlashning asosiy mexanizmi bu Telegram Stars (yulduzlar) — platformaning ichki valyutasi. Kontent yaratuvchilari bu yulduzlarni ishlab, ularni Toncoin (TON) ga almashtirib, keyin real pulga yechib olishlari mumkin.
+
+🤑 Qanday qilib daromad topish mumkin?
+
+Telegram kanal va guruh egalari uchun bir necha imkoniyatlar mavjud:
+
+· Kanal reklamasi: Kanalda ko'rsatiladigan reklamalardan tushgan daromadning 50% ini oling. Buning uchun kanalingizda 1000+ obunachi bo‘lishi shart.
+· Star Reactions (Yulduzli reaksiyalar): Obunachilar postlaringizga yulduzcha bilan reaksiya bildirib, sizga yulduz jo‘natishi mumkin. Siz bu yulduzlarning 100% ini olasiz.
+· Star Subscriptions (Yulduzli obunalar): Maxsus havola yaratib, uni faqat oylik yulduz to‘lovi evaziga kirish mumkin bo‘lgan eksklyuziv kanalga aylantiring.
+· Suggested Posts (Tavsiya etilgan postlar): Obunachilar sizning kanalingizda post joylashtirishni taklif qilishi va buning evaziga sizga yulduz yoki TON to‘lashi mumkin. Siz postni tasdiqlaganingizdan 24 soat o‘tgach mukofot olasiz.
+· Star Messages (Yulduzli xabarlar): Sizga xat yozmoqchi bo‘lgan notanish odamlardan yulduz undirib olishingiz mumkin (Premium a’zolar uchun). Bu xabarlarni to‘lash orqali spamdan himoyalanadi.
+
+Muhim eslatma: Yechib olish uchun faqat ishlab topilgan yulduzlar yaroqli. Sotib olingan yulduzlarni pulga aylantirib bo‘lmaydi. Yulduzlarni yechib olish uchun Fragment platformasidan foydalaniladi va ular ishlab topilgan paytdan boshlab 21 kun o‘tgach yechib olish mumkin.
+
+💳 Telegram Stars va ularni sotib olish
+
+· Stars nima? Bu App Store va Google Play qoidalariga moslashish uchun blokcheynda emas, balki Telegram hisobingizda saqlanadigan markaziy valyuta.
+· Qayerdan sotib olish mumkin?
+  · Ilova ichida (Google/Apple Pay): Qulay, lekin taxminan 30% komissiya tufayli qimmatroq ($0.020/star atrofida).
+  · Fragment orqali (TON kriptovalyutasi bilan): Taxminan 30% arzonroq ($0.014/star atrofida), lekin TON hamyonini talab qiladi.
+
+📈 Kriptovalyuta va reklama imkoniyatlari
+
+Telegram iqtisodiyoti TON bilan chambarchas bog‘liq. Yulduzlarni Fragment orqali TON ga almashtirib olasiz, bu esa yechib olish uchun asosiy vositadir. Agar daromadingizni kanalni reklama qilishga sarflasangiz, Telegram tomonidan 30% chegirma olasiz.
+
+Telegramning monetizatsiya tizimi, ayniqsa, ko‘plab auditoriyaga ega kanallar uchun imkoniyatlar yaratadi. Biror kanalingiz bormi yoki hozircha reja tuzayapsizmi?
+
+user: Hopweb qanday ilova
+bot: HopWeb — bu Android qurilmalari uchun mo‘ljallangan mobil kod muharriri.
+
+· Ishlab chiqaruvchi: Venter Studio
+· Asosiy vazifasi: Telefonda to‘g‘ridan-to‘g‘ri PHP, HTML, CSS va JavaScript kodlarini yozish va sinab ko‘rish imkonini beradi.
+· O‘ziga xos xususiyati: Tarkibida o‘rnatilgan PHP server bor, shuning uchun internetga chiqmasdan ham kodlaringizni ishga tushirib, natijasini ko‘rishingiz mumkin.
+· Muhim eslatma: Ishlab chiquvchilar tomonidan qo‘llab-quvvatlanmaydi va yangilanmaydi — ya’ni hozircha faqat mavjud holatida ishlayveradi.
+
+---
+
+Agar siz:
+
+· Telefonda oddiy veb-sahifalar yoki PHP skriptlarini sinab ko‘rmoqchi bo‘lsangiz — bu ilova ish berishi mumkin.
+· Zamonaviy va doimiy yangilanadigan vosita izlayotgan bo‘lsangiz — boshqa alternativlarni (masalan, Acode yoki Spck kod muharrirlari) ko‘rib chiqishingizni maslahat beraman.
+
+user: Flow haqida bilasanmi
+bot: "Flow" nomi bir nechta mashhur texnologiyalarni anglatadi. Eng keng tarqalgan ikkitasini ko'rib chiqamiz:
+
+· Google Flow – Sun'iy Intellekt yordamida film yaratish: Bu Google Labs tomonidan ishlab chiqilgan, matn yoki o'z fayllaringiz asosida kinematik videokliplar yaratadigan AI vositasidir. U eng kuchli Veo 3.1 modelida ishlaydi va natijalarga ko'rinmas SynthID suv belgisi qo'yiladi.
+  · Kirish: Buning uchun 18 yoshdan katta bo'lish va Google AI Pro yoki Ultra obunalaridan biriga ega bo'lish kerak. Workspace foydalanuvchilari oyiga 50 ta bepul kredit olishlari mumkin.
+· Flow Blockchain – Web3 uchun blokcheyn: Bu Dapper Labs (CryptoKitties yaratuvchilari) tomonidan ishlab chiqilgan, keng ko'lamli ilovalar va o'yinlar uchun mo'ljallangan 1-qavat (Layer 1) blokcheyndir. NBA Top Shot va Disney Pinnacle kabi mashhur loyihalar aynan shu tarmoqda ishlaydi.
+  · Texnologiyasi: U o'zining modulli arxitekturasi va raqamli aktivlar bilan xavfsiz ishlash uchun maxsus yaratilgan Cadence dasturlash tili bilan ajralib turadi. Bundan tashqari, Ethereum ilovalari bilan to'liq mos keladi (EVM ekvivalentligi).
+  · Tokeni: Ushbu tarmoqda FLOW kriptovalyutasi mavjud bo'lib, u to'lovlar va tarmoq boshqaruvida ishlatiladi.
+
+Yana "Flow Myna" (biznes-jarayonlarni tahlil qilish platformasi) kabi boshqa nomlar ham mavjud, lekin "Flow" deyilganda ko'pincha yuqoridagi ikkitasi nazarda tutiladi. Qaysi biri sizni qiziqtiradi?
+
+
+user: Google flow haqida bilasanmi
+bot: Ha, Google Flow bu Google Labs tomonidan ishlab chiqilgan va sun'iy intellekt yordamida video yaratish, tahrirlash va musiqiy asarlar yaratish imkonini beruvchi ijodiy studiyadir. U ayniqsa, kinoijodkorlar va ijodkorlar uchun mo‘ljallangan.
+
+🎬 Asosiy xususiyatlari
+
+· Kuchli modellar: Eng ilg‘or Veo 3.1 (yuqori sifatli video) va Gemini Omni Flash (matn, rasm, video bilan ishlaydi) modellari asosida ishlaydi.
+· Murakkab boshqaruv: Bir nechta referens rasm asosida video yaratish (“Ingredients to Video”), boshlang‘ich va oxirgi kadr orasida uzluksiz o‘tish (“Frames to Video”), videoni bir daqiqagacha uzaytirish (“Extend”) kabi funksiyalarga ega.
+· Aniq tahrirlash: Sahnaga yangi obyekt qo‘shish (“Insert”) yoki keraksiz narsalarni olib tashlash (“Remove”) imkoniyati mavjud.
+· Sun'iy intellekt yordamchisi: Google Flow Agent ssenariy va g‘oyalarni ishlab chiqishda yordam beradi.
+· Maxsus vositalar: “Tools” funksiyasi orqali tabiiy tilda maxsus ish jarayonlari yaratiladi.
+· Musiqa: Google Flow Music orqali qo‘shiqlar va musiqiy videolar yaratish mumkin.
+
+🎫 Foydalanish va narx
+
+· Bepul reja: Kundalik 50 kredit beriladi (cheklangan funksiyalar bilan).
+· Pullik rejalar:
+  · AI Pro: Oylik $20, 1000 kredit.
+  · AI Ultra: Oylik $100+, 10,000 kredit va barcha funksiyalar.
+· Kredit sarfi: 8 sekundlik video yaratish Veo 3.1 Quality uchun 100 kredit, Gemini Omni Flash uchun esa 25 kredit turadi.
+
+
+user: telegramda bepul stars ishlaydigan botlar bormi
+bot: Ha telegramda bepul stars ishlaydigan bir necha botlar bor
+
+http://t.me/StarsovEarnBot?start=8CZ8IwC2V bu bot orqali vazifalar yani telegram kanal yoki botlarga qoʻshilish orqali stars ishlashingiz mumkin 
+
+
+
+user: Github haqida toliq maʼlumot ber 
+bot: GitHub — bu dasturchilar uchun eng katta platforma boʻlib, kod yozish, saqlash va birgalikda loyihalar ustida ishlash uchun xizmat qiladi . Asosiy jihatlari:
+
+· Asosi: Bu Git versiya nazorat tizimi uchun veb-grafik interfeys va bulutli xosting xizmati . 2018-yildan Microsoft kompaniyasiga tegishli .
+· Maqsadi: Dasturiy ta'minotni ishlab chiqishning toʻliq siklini — rejalashtirish, yaratish, koʻrib chiqish, sinov, joylashtirish va boshqarishni qoʻllab-quvvatlaydi .
+
+✨ Asosiy imkoniyatlar
+
+· Hamkorlik va kod boshqaruvi: Loyihalarni (repository) saqlash, Pull Request orqali kod koʻrib chiqish, Issues vositasida vazifalarni kuzatish va Discussions hamjamiyat muhokamalari .
+· Avtomatlashtirish (CI/CD): GitHub Actions yordamida testlash, build qilish va joylashtirish jarayonlarini avtomatlashtirish. GitHub Packages orqali o'z paketlaringizni boshqarish .
+· Xavfsizlik: Xavfsizlik zaifliklarini avtomatik aniqlash (CodeQL, Dependabot) va maxfiy tokenlarni himoya qilish .
+· Hujjatlashtirish: GitHub Pages yordamida repositorydan toʻgʻridan-toʻgʻri statik veb-sayt yoki hujjat saytini yaratish va joylashtirish .
+
+👨‍💻 Kimlar foydalanadi?
+
+Undan nafaqat dasturchilar, balki talabalar, loyiha menejerlari, tadqiqotchilar va Fortune 500 kompaniyalari ham foydalanadi . Ayniqsa, ochiq kodli (Open Source) loyihalar uchun eng mashhur platforma hisoblanadi .
+
+💰 Narx siyosati
+
+· Bepul reja: Barcha foydalanuvchilar uchun cheksiz public va private repositorylar .
+· Pullik rejalar: GitHub Team ($4/oy) va GitHub Enterprise ($21/oy) qoʻshimcha hamkorlik va xavfsizlik vositalarini taqdim etadi .
+
+
+user: sen telefonni boshqara olasanmi, sen telefonni boshqara olasanmi?
+bot: Ha men sizning telefoningizni boshqara olaman.
+Agar sizning mobil telefoningiz boshqarish uchun ruxsat berilgan boʻlsa
+
+
+
+user: dexo chat ilovasi kerak
+bot: ilovani pastda link orqali yuklab olishingiz mumkin👇
+https://github.com/XakimovAzizbek/dexo-chat-bot/releases/download/1/DEXO.CHAT.BOT.apk
+
+
+user: spotify ilovasini qayerdan yuklab oladi
+bot: spotify ilovasini Google play market orqali yuklab olish mumkin
+
+Link orqali yuklab olishingiz mumkin: https://play.google.com/store/apps/details?id=com.spotify.music
+
+
+user: youtube studio ilovasini qayerdan yuklab olish mumkin
+bot: Youtube studio ilovasini Android telefonlar uchun Google play market orqali yuklab olishingiz mumkin 
+
+yuklab olish uchun link: https://play.google.com/store/apps/details?id=com.google.android.apps.youtube.creator

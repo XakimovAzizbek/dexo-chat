@@ -1,0 +1,32 @@
+# DEXO CHAT BOT — image.txt
+# Format:
+#   user: kalit1, kalit2, kalit3
+#   image: fayl_nomi.jpg
+#
+# Rasm fayllari index.html bilan bir papkada bo'lishi kerak
+
+
+user: payme uchun rasm yasab ber 
+image:  https://xakimovazizbek.github.io/dexo-chat-bot/IMG_20260817_093929_599.jpg
+
+
+user: Golden uchun rasm yasab ber
+image: https://xakimovazizbek.github.io/dexo-chat-bot/file_00000000bee881f4a350841fc59f6870.png
+
+
+
+user: dexo chat bot rasmi kerak
+image: dexo-chat-bot.png
+
+user: TEZKOR HELP NOMI UCHUN RASM YASAB BER
+image: https://xakimovazizbek.github.io/dexo-chat-bot/IMG_20260816_201539_473.jpg
+video: https://github.com/XakimovAzizbek/dexo-chat-bot/releases/download/Hynnynnyynny/lv_0_20260817170348.mp4
+
+user: Humo uchun rasm yasab ber
+image: https://xakimovazizbek.github.io/dexo-chat-bot/IMG_20260816_202348_383.jpg
+
+user: telegram stars rasm yasab ber
+image: https://xakimovazizbek.github.io/dexo-chat-bot/IMG_20260816_203441_640.jpg
+
+user: dumaloq shaklda Oʻzbekiston bayrogʻi rasmi kerak 
+image: https://xakimovazizbek.github.io/dexo-chat-bot/IMG_20260816_211725_381.jpg

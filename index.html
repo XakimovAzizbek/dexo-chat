@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEXO CHAT</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#060608;--surface:#0e0e15;--card:#13131e;--border:#1f1f32;--border2:#2e2e4a;
+  --accent:#7b5ea7;--accent2:#9d7fd4;--accent3:#c4aaff;
+  --text:#eaeaf5;--muted:#55556a;--bot-bg:#111120;--user-bg:#1e1540;--user-bdr:#3d2980;
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;height:100dvh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+body::before{content:'';position:fixed;top:-200px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(123,94,167,0.12),transparent 70%);pointer-events:none}
+.chat-wrapper{width:100%;max-width:460px;height:100dvh;display:flex;flex-direction:column;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);position:relative;z-index:1}
+header{padding:14px 16px;background:var(--card);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;position:relative}
+header::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+.avatar{width:42px;height:42px;border-radius:12px;overflow:hidden;flex-shrink:0;box-shadow:0 0 18px rgba(123,94,167,0.4);position:relative;background:var(--card)}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.avatar::after{content:'';position:absolute;bottom:-2px;right:-2px;width:9px;height:9px;border-radius:50%;background:#3ddc84;border:2px solid var(--card);box-shadow:0 0 6px rgba(61,220,132,0.7)}
+.header-info h1{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;letter-spacing:1.5px;background:linear-gradient(90deg,var(--accent3),#fff 60%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.header-sub{font-size:11px;color:var(--muted);margin-top:2px}
+#messages{flex:1;overflow-y:auto;padding:16px 14px;display:flex;flex-direction:column;gap:10px;scroll-behavior:smooth}
+#messages::-webkit-scrollbar{width:3px}
+#messages::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.msg{max-width:82%;padding:10px 14px;border-radius:18px;font-size:14px;line-height:1.6;animation:fadeUp .2s ease;position:relative;white-space:pre-wrap;word-break:break-word}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.bot{background:var(--bot-bg);border:1px solid var(--border);border-bottom-left-radius:4px;align-self:flex-start;box-shadow:0 2px 12px rgba(0,0,0,0.3)}
+.msg.bot::before{content:'';position:absolute;left:-1px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--accent),transparent);border-radius:2px 0 0 2px}
+.msg.user{background:var(--user-bg);border:1px solid var(--user-bdr);border-bottom-right-radius:4px;align-self:flex-end}
+.typing{display:flex;gap:5px;align-items:center;padding:13px 16px;background:var(--bot-bg);border:1px solid var(--border);border-radius:18px;border-bottom-left-radius:4px;align-self:flex-start;width:fit-content}
+.typing span{width:6px;height:6px;border-radius:50%;background:var(--accent2);animation:blink 1.3s infinite}
+.typing span:nth-child(2){animation-delay:.22s}
+.typing span:nth-child(3){animation-delay:.44s}
+@keyframes blink{0%,80%,100%{opacity:.25;transform:scale(.75)}40%{opacity:1;transform:scale(1)}}
+@keyframes cursorBlink{0%,100%{opacity:1}50%{opacity:0}}
+.tts-btn{position:absolute;bottom:6px;right:8px;background:none;border:none;cursor:pointer;font-size:13px;opacity:0.45;transition:opacity .2s;padding:2px 4px;line-height:1}
+.msg a{color:var(--accent3);text-decoration:underline;word-break:break-all}
+.msg a:hover{opacity:.8}
+.tts-btn:hover{opacity:1}
+.tts-btn.playing{opacity:1;animation:ttsPulse .8s infinite alternate}
+@keyframes ttsPulse{from{opacity:0.4}to{opacity:1}}
+.input-bar{padding:12px 14px;background:var(--card);border-top:1px solid var(--border);display:flex;gap:9px;align-items:center;position:relative}
+.input-bar::before{content:'';position:absolute;top:-1px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+#userInput{flex:1;background:var(--bg);border:1px solid var(--border2);border-radius:22px;padding:11px 18px;color:var(--text);font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border-color .2s,box-shadow .2s}
+#userInput:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(123,94,167,0.08)}
+#userInput::placeholder{color:var(--muted)}
+#sendBtn{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7b5ea7,#3d1f80);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;box-shadow:0 0 16px rgba(123,94,167,0.4);transition:transform .15s,box-shadow .2s}
+#sendBtn:hover{box-shadow:0 0 24px rgba(123,94,167,0.6)}
+#sendBtn:active{transform:scale(.88)}
+#sendBtn svg{width:17px;height:17px;fill:white;margin-left:2px}
+#ocrBtn{width:42px;height:42px;border-radius:50%;background:var(--card);border:1px solid var(--border2);cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:border-color .2s,box-shadow .2s}
+#ocrBtn:hover{border-color:var(--accent);box-shadow:0 0 12px rgba(123,94,167,0.3)}
+#ocrBtn:active{transform:scale(.88)}
+#ocrBtn svg{width:18px;height:18px;fill:var(--muted)}
+#ocrBtn:hover svg{fill:var(--accent2)}
+.ocr-preview{max-width:82%;border-radius:14px;overflow:hidden;align-self:flex-end;border:1px solid var(--user-bdr);animation:fadeUp .2s ease}
+.ocr-preview img{width:100%;max-height:220px;object-fit:cover;display:block}
+.msg.bot.img-msg{padding:8px;max-width:90%}
+.img-wrap{position:relative;border-radius:12px;overflow:hidden;min-height:180px;background:var(--card)}
+.img-wrap img{width:100%;display:block;border-radius:12px;opacity:0;transition:opacity .5s ease}
+.img-wrap img.loaded{opacity:1}
+.img-shimmer{position:absolute;inset:0;background:linear-gradient(110deg,#111120 30%,#1e1e38 50%,#111120 70%);background-size:200% 100%;animation:shimmer 1.4s infinite;border-radius:12px}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.img-shimmer.hide,.img-spinner.hide{display:none}
+.img-spinner{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.img-spinner svg{width:30px;height:30px;animation:spin 1s linear infinite;stroke:var(--accent2);fill:none}
+@keyframes spin{to{transform:rotate(360deg)}}
+.img-spinner p{font-size:11px;color:var(--muted)}
+.img-caption{font-size:11px;color:var(--muted);margin-top:5px;padding:0 2px}
+
+/* ── INTRO VIDEO ── */
+#introScreen{position:fixed;inset:0;background:#000;z-index:9999;display:flex;align-items:center;justify-content:center}
+#introScreen video{width:100%;height:100%;object-fit:cover}
+#introScreen.hide{display:none}
+</style>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=FREE"></script>
+</head>
+<body>
+<!-- INTRO VIDEO -->
+<div id="introScreen">
+  <video id="introVideo" src="dexo-chat.mp4" autoplay playsinline muted></video>
+</div>
+<div class="chat-wrapper">
+  <header>
+    <div class="avatar">
+      <img src="dexo-chat.png" alt="DEXO" onerror="this.style.display='none';this.parentNode.style.background='linear-gradient(135deg,#7b5ea7,#2a1560)'"/>
+    </div>
+    <div class="header-info">
+      <h1>DEXO CHAT</h1>
+      <div class="header-sub" id="headerSub">Online</div>
+    </div>
+  </header>
+  <div id="messages"></div>
+  <div class="input-bar">
+    <button id="ocrBtn" title="Rasm yuklash">
+      <svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm1 4v10h2V7H6zm4 0v10h2V7h-2zm4 0v10h2V7h-2z"/></svg>
+    </button>
+    <input id="userInput" type="text" placeholder="Xabar yozing..." autocomplete="off"/>
+    <button id="sendBtn">
+      <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+    </button>
+  </div>
+</div>
+<input type="file" id="ocrFileInput" accept="image/*" style="position:absolute;opacity:0;pointer-events:none;width:1px;height:1px"/>
+
+<script>
+// ── INTRO VIDEO ──
+(function(){
+  const screen = document.getElementById('introScreen');
+  const video  = document.getElementById('introVideo');
+  function done(){ screen.classList.add('hide'); }
+  video.addEventListener('ended', done);
+  video.addEventListener('error', done);
+  // video 10 soniyadan oshsa ham o'tadi (ehtiyot)
+  setTimeout(done, 15000);
+})();
+// ══════════════════════════════════════
+// 📄 TXT FAYLLAR RO'YXATI
+// ══════════════════════════════════════
+const TXT_FILES = [
+  'https://xakimovazizbek.github.io/dexo-chat/botuz.txt',
+  'https://xakimovazizbek.github.io/dexo-chat/botru.txt',
+  'https://xakimovazizbek.github.io/dexo-chat/boten.txt',
+];
+// ══════════════════════════════════════
+
+const STORAGE_KEY = 'dexo_chat_v1';
+let rules = [];
+let chatLog = []; // 'history' emas — browser bilan to'qnashmaydi
+let pendingOcrImg = null; // yuklangan rasm kutib turadi
+
+// ── Parser ──
+function parse(text) {
+  const lines = text.split('\n'), out = [];
+  let keys = null, replyLines = [], inBot = false;
+  function saveReply() {
+    if (!keys || !replyLines.length) return;
+    const reply = replyLines.join('\n').trimEnd();
+    if (!reply) { keys = null; replyLines = []; inBot = false; return; }
+    const k = keys.slice().sort().join('|');
+    const ex = out.find(r => r.k === k);
+    if (ex) ex.replies.push(reply);
+    else out.push({ k, keywords: [...keys], replies: [reply] });
+    keys = null; replyLines = []; inBot = false;
+  }
+  for (const raw of lines) {
+    const line = raw.trim();
+    if (line.startsWith('#')) continue;
+    if (/^user:/i.test(line)) {
+      saveReply();
+      keys = line.slice(5).trim().split(',').map(s => s.trim().toLowerCase()).filter(Boolean);
+      inBot = false;
+    } else if (/^bot:/i.test(line) && keys) {
+      replyLines = [];
+      const first = line.slice(4).trim();
+      if (first) replyLines.push(first);
+      inBot = true;
+    } else if (inBot) {
+      replyLines.push(raw);
+    }
+  }
+  saveReply();
+  return out;
+}
+
+// ── Rasm: image.txt kalit so'zlari asosida tekshirish ──
+function isImageRequest(text) {
+  const lower = text.toLowerCase();
+  return imageRules.some(r => r.keywords.some(k => lower.includes(k)));
+}
+
+// ── OCR trigger so'zlari ──
+const OCR_TRIGGERS = [
+  "matnni o'qi","matnni ko'chir","rasmdagi matn","rasmdan matn",
+  "matnni yubor","matnni menga","matnni olib","o'qib ber","ko'chirib ber",
+  "read text","extract text","copy text","text from image",
+  "прочитай текст","текст из","скопируй текст"
+];
+function isOcrRequest(text) {
+  const l = text.toLowerCase();
+  return OCR_TRIGGERS.some(t => l.includes(t));
+}
+
+// ── image.txt parser ──
+// Format:
+//   user: kalit1, kalit2
+//   image: fayl.png
+let imageRules = [];
+
+(function(){
+  var x = new XMLHttpRequest();
+  x.open('GET', 'https://xakimovazizbek.github.io/dexo-chat/image.txt', false);
+  try { x.send(); } catch(e) { return; }
+  if (!x.responseText) return;
+  var lines = x.responseText.split('\n'), keys = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line || line.charAt(0) === '#') continue;
+    if (/^user:/i.test(line)) {
+      keys = line.slice(5).trim().split(',').map(function(s){ return s.trim().toLowerCase(); }).filter(Boolean);
+    } else if (/^image:/i.test(line) && keys) {
+      var file = line.slice(6).trim();
+      if (file) imageRules.push({ keywords: keys, file: file, video: null });
+      // keys saqlanadi — keyingi video: qatorni kutadi
+    } else if (/^video:/i.test(line) && keys) {
+      var vfile = line.slice(6).trim();
+      // Oxirgi qo'shilgan imageRule ga video biriktirish
+      if (vfile && imageRules.length) {
+        imageRules[imageRules.length - 1].video = vfile;
+      }
+      keys = null;
+    }
+  }
+})();
+
+// image.txt dan mos fayl topish
+function findImageRule(text) {
+  const lower = text.toLowerCase();
+  return imageRules.find(r => r.keywords.some(k => lower.includes(k))) || null;
+}
+function findImageFile(text) {
+  const rule = findImageRule(text);
+  return rule ? rule.file : null;
+}
+
+// Rasm ko'rsatish (image.txt dan)
+function renderImage(file, originalText, videoFile) {
+  videoFile = videoFile || null;
+  const id = Date.now();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot img-msg';
+  wrap.innerHTML = `
+    <div class="img-wrap">
+      <div class="img-shimmer" id="sh${id}"></div>
+      <div class="img-spinner" id="sp${id}">
+        <svg viewBox="0 0 24 24" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-opacity=".2"/>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+        </svg>
+        <p>Image is being prepared...</p>
+      </div>
+      <img id="im${id}" src="${file}" alt="${originalText}"/>
+    </div>
+    <div class="img-caption">🎨 ${originalText}</div>
+  `;
+  messagesEl.appendChild(wrap);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  const img = document.getElementById('im'+id);
+  const sh  = document.getElementById('sh'+id);
+  const sp  = document.getElementById('sp'+id);
+  img.onload = () => {
+    img.classList.add('loaded'); sh.classList.add('hide'); sp.classList.add('hide');
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    // video: mavjud bo'lsa Convert tugmasi chiqar
+    if (videoFile) {
+      const btn = document.createElement('button');
+      btn.className = 'convert-btn';
+      btn.textContent = '🎬 Convert to video';
+      btn.onclick = function() {
+        btn.remove();
+        renderVideo(videoFile, originalText);
+      };
+      wrap.appendChild(btn);
+      messagesEl.scrollTop = messagesEl.scrollHeight;
+    }
+  };
+  img.onerror = () => {
+    sh.classList.add('hide'); sp.classList.add('hide'); img.style.display = 'none';
+    const err = document.createElement('p');
+    err.style.cssText = 'color:var(--muted);font-size:13px;padding:16px;text-align:center';
+    err.textContent = "⚠️ Rasm topilmadi. image.txt va rasm faylini tekshiring.";
+    img.parentNode.appendChild(err);
+  };
+}
+
+// ── video.txt parser ──
+let videoRules = [];
+(function(){
+  var x = new XMLHttpRequest();
+  x.open('GET', 'https://xakimovazizbek.github.io/dexo-chat/video.txt', false);
+  try { x.send(); } catch(e) { return; }
+  if (!x.responseText) return;
+  var lines = x.responseText.split('\n'), keys = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line || line.charAt(0) === '#') continue;
+    if (/^user:/i.test(line)) {
+      keys = line.slice(5).trim().split(',').map(function(s){ return s.trim().toLowerCase(); }).filter(Boolean);
+    } else if (/^video:/i.test(line) && keys) {
+      var file = line.slice(6).trim();
+      if (file) videoRules.push({ keywords: keys, file: file });
+      keys = null;
+    }
+  }
+})();
+
+// Foydalanuvchi matni videoRules kalit so'zlari bilan TOLIK mos kelishini tekshirish
+function isVideoRequest(text) {
+  const lower = text.toLowerCase().trim();
+  return videoRules.some(r => r.keywords.some(k => lower === k));
+}
+
+function findVideoFile(text) {
+  const lower = text.toLowerCase().trim();
+  const hit = videoRules.find(r => r.keywords.some(k => lower === k));
+  return hit ? hit.file : null;
+}
+
+// Video ko'rsatish
+function renderVideo(file, originalText) {
+  const id = Date.now();
+  const wrap = document.createElement('div');
+  wrap.className = 'msg bot video-msg';
+  wrap.innerHTML = `
+    <div class="video-wrap">
+      <div class="img-shimmer" id="vsh${id}"></div>
+      <div class="img-spinner" id="vsp${id}">
+        <svg viewBox="0 0 24 24" stroke-width="2">
+          <circle cx="12" cy="12" r="10" stroke-opacity=".2"/>
+          <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"/>
+        </svg>
+        <p>Video is being prepared...</p>
+      </div>
+      <video id="vid${id}" src="${file}" controls playsinline preload="metadata" style="opacity:0;transition:opacity .4s;width:100%;max-height:70vw;object-fit:contain"></video>
+    </div>
+    <div class="video-caption">🎬 ${originalText}</div>
+  `;
+  messagesEl.appendChild(wrap);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  const vid = document.getElementById('vid'+id);
+  const vsh = document.getElementById('vsh'+id);
+  const vsp = document.getElementById('vsp'+id);
+  vid.oncanplay = () => {
+    vid.style.opacity = '1';
+    vsh.classList.add('hide');
+    vsp.classList.add('hide');
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  };
+  vid.onerror = () => {
+    vsh.classList.add('hide');
+    vsp.classList.add('hide');
+    vid.style.display = 'none';
+    const err = document.createElement('p');
+    err.style.cssText = 'color:var(--muted);font-size:13px;padding:16px;text-align:center';
+    err.textContent = "⚠️ Video topilmadi.";
+    vid.parentNode.appendChild(err);
+  };
+}
+
+// ── telephone.txt parser ──
+// Format:
+//   user: foydalanuvchi matni
+//   action: TORCH_ON | TORCH_OFF | OPEN:tg:// | VIBRATE | OPEN:https://...
+let phoneRules = [];
+(function(){
+  var x = new XMLHttpRequest();
+  x.open('GET', 'https://xakimovazizbek.github.io/dexo-chat/telephone.txt', false);
+  try { x.send(); } catch(e) { return; }
+  if (!x.responseText) return;
+  var lines = x.responseText.split('\n'), keys = null;
+  for (var i = 0; i < lines.length; i++) {
+    var line = lines[i].trim();
+    if (!line || line.charAt(0) === '#') continue;
+    if (/^user:/i.test(line)) {
+      keys = line.slice(5).trim().split(',').map(function(s){ return s.trim().toLowerCase(); }).filter(Boolean);
+    } else if (/^action:/i.test(line) && keys) {
+      var act = line.slice(7).trim();
+      if (act) phoneRules.push({ keywords: keys, action: act });
+      keys = null;
+    }
+  }
+})();
+
+function isPhoneRequest(text) {
+  var lower = text.toLowerCase().trim();
+  return phoneRules.some(function(r){ return r.keywords.some(function(k){ return lower === k; }); });
+}
+
+function findPhoneAction(text) {
+  var lower = text.toLowerCase().trim();
+  var hit = phoneRules.find(function(r){ return r.keywords.some(function(k){ return lower === k; }); });
+  return hit ? hit.action : null;
+}
+
+// Torch stream
+var _torchStream = null;
+
+async function runPhoneAction(action) {
+  // TORCH_ON
+  if (action === 'TORCH_ON') {
+    try {
+      _torchStream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: 'environment' }
+      });
+      var track = _torchStream.getVideoTracks()[0];
+      await track.applyConstraints({ advanced: [{ torch: true }] });
+      addMsg("The flashlight is on. 🔦", 'chat');
+    } catch(e) {
+      addMsg("Unable to turn on the flashlight. Please allow it, otherwise the device does not support it..", 'chat');
+    }
+    return;
+  }
+
+  // TORCH_OFF
+  if (action === 'TORCH_OFF') {
+    if (_torchStream) {
+      _torchStream.getTracks().forEach(function(t){ t.stop(); });
+      _torchStream = null;
+      addMsg("The flashlight is off. 🔦", 'chat');
+    } else {
+      addMsg("The flashlight is already off..", 'chat');
+    }
+    return;
+  }
+
+  // VIBRATE
+  if (action === 'VIBRATE') {
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200]);
+      addMsg("Telefon tebratildi 📳", 'chat');
+    } else {
+      addMsg("Vibro qo'llab-quvvatlanmaydi.", 'chat');
+    }
+    return;
+  }
+
+  // OPEN:url yoki deep link
+  if (action.startsWith('OPEN:')) {
+    var url = action.slice(5).trim();
+    try {
+      // tg://, whatsapp://, youtube:// kabi deep linklar uchun intent:// formatiga o'tkazish
+      if (!url.startsWith('http') && !url.startsWith('https')) {
+        // Deep link — masalan tg://, whatsapp://
+        var scheme = url.split(':')[0]; // tg
+        var rest = url.slice(scheme.length + 3); // qolgan qism
+        var intentUrl = 'intent://' + rest + '#Intent;scheme=' + scheme + ';end';
+        window.location.href = intentUrl;
+      } else {
+        // Oddiy https:// link
+        window.open(url, '_blank');
+      }
+      addMsg("Opening... ✅", 'chat');
+    } catch(e) {
+      addMsg("Could not open..", 'chat');
+    }
+    return;
+  }
+
+  // BATTERY
+  if (action === 'BATTERY') {
+    if (navigator.getBattery) {
+      navigator.getBattery().then(function(battery) {
+        var pct = Math.round(battery.level * 100);
+        var charging = battery.charging ? " (charging ⚡)" : "";
+        addMsg("🔋 Battery: " + pct + "%" + charging, 'chat');
+      }).catch(function(){
+        addMsg("Unable to retrieve battery information.", 'chat');
+      });
+    } else {
+      addMsg("This device does not support battery information..", 'chat');
+    }
+    return;
+  }
+
+  addMsg("Unknown command.", 'chat');
+}
+
+// ── Reply ──
+const defaults = ["error","error","error"];
+function getReply(text) {
+  const lower = text.toLowerCase();
+  const hits = rules.filter(r => r.keywords.some(k => lower.includes(k)));
+  if (!hits.length) return defaults[Math.floor(Math.random()*defaults.length)];
+  const rule = hits[Math.floor(Math.random()*hits.length)];
+  return rule.replies[Math.floor(Math.random()*rule.replies.length)];
+}
+
+// ── UI elementlar ──
+const messagesEl = document.getElementById('messages');
+const inputEl    = document.getElementById('userInput');
+const sendBtnEl  = document.getElementById('sendBtn');
+const ocrBtn     = document.getElementById('ocrBtn');
+const ocrFile    = document.getElementById('ocrFileInput');
+
+// ── Xotira ──
+function saveChatLog() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(chatLog)); } catch(e) {}
+}
+
+function loadChatLog() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (!saved) return false;
+    const arr = JSON.parse(saved);
+    if (!Array.isArray(arr) || !arr.length) return false;
+    arr.forEach(item => {
+      if (item.role === 'ocr') {
+        renderOcrPreview(item.src, false);
+      } else {
+        renderMsgDirect(item.text, item.role);
+      }
+    });
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+    return true;
+  } catch(e) { return false; }
+}
+
+// ── OCR preview ──
+function renderOcrPreview(src, save) {
+  const prev = document.createElement('div');
+  prev.className = 'ocr-preview';
+  const pimg = document.createElement('img');
+  pimg.src = src;
+  prev.appendChild(pimg);
+  messagesEl.appendChild(prev);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  if (save) {
+    chatLog.push({ role: 'ocr', src });
+    saveChatLog();
+  }
+}
+
+// ── Xabar: to'g'ridan (tarix yuklashda, typewriter yo'q) ──
+function renderMsgDirect(text, role) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  if (/(https?:\/\/)/.test(text)) {
+    d.innerHTML = linkify(text);
+  } else {
+    d.textContent = text;
+  }
+  messagesEl.appendChild(d);
+}
+
+// ── Xabar: typewriter + saqlash ──
+// Matn ichidagi linkni <a> ga aylantirish
+function linkify(text) {
+  return text.replace(/(https?:\/\/[^\s]+)/g, function(url) {
+    return '<a href="' + url + '" target="_blank" rel="noopener noreferrer" onclick="window.open(this.href,\'_blank\');return false;">' + url + '</a>';
+  });
+}
+
+function addMsg(text, role) {
+  const d = document.createElement('div');
+  d.className = 'msg ' + role;
+  messagesEl.appendChild(d);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+
+  chatLog.push({ role, text });
+  saveChatLog();
+
+  if (role === 'bot') {
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.style.cssText = 'display:inline-block;width:2px;height:1em;background:var(--accent2);margin-left:2px;vertical-align:text-bottom;animation:cursorBlink .6s infinite';
+    d.appendChild(cursor);
+    const timer = setInterval(() => {
+      if (i < text.length) {
+        cursor.insertAdjacentText('beforebegin', text[i]);
+        i++;
+        messagesEl.scrollTop = messagesEl.scrollHeight;
+      } else {
+        clearInterval(timer);
+        cursor.remove();
+        // Linkni <a> ga aylantirish
+        d.innerHTML = linkify(d.textContent);
+        // TTS tugmasi (ResponsiveVoice)
+        var btn = document.createElement('button');
+        btn.className = 'tts-btn';
+        btn.textContent = '\uD83D\uDD0A';
+        btn.onclick = function() {
+          if (typeof responsiveVoice === 'undefined') return;
+          if (responsiveVoice.isPlaying()) {
+            responsiveVoice.cancel();
+            btn.classList.remove('playing');
+            return;
+          }
+          btn.classList.add('playing');
+          responsiveVoice.speak(text, 'Russian Female', {
+            rate: 0.9,
+            onend: function(){ btn.classList.remove('playing'); },
+            onerror: function(){ btn.classList.remove('playing'); }
+          });
+        };
+        d.style.position = 'relative';
+        d.style.paddingBottom = '22px';
+        d.appendChild(btn);
+      }
+    }, 18);
+  } else {
+    if (/(https?:\/\/)/.test(text)) {
+      d.innerHTML = linkify(text);
+    } else {
+      d.textContent = text;
+    }
+  }
+}
+
+// ── Typing ──
+let _dotTimer = null;
+function showTyping() {
+  const t = document.createElement('div');
+  t.className = 'typing'; t.id = 'typing';
+  t.innerHTML = '<span></span><span></span><span></span>';
+  messagesEl.appendChild(t);
+  messagesEl.scrollTop = messagesEl.scrollHeight;
+  const sub = document.getElementById('headerSub');
+  sub.style.color = 'var(--accent2)';
+  let dots = 0;
+  sub.textContent = 'Writing';
+  _dotTimer = setInterval(() => {
+    dots = (dots + 1) % 4;
+    sub.textContent = 'Writing' + '.'.repeat(dots);
+  }, 400);
+}
+function hideTyping() {
+  if (_dotTimer) { clearInterval(_dotTimer); _dotTimer = null; }
+  const t = document.getElementById('typing');
+  if (t) t.remove();
+  const sub = document.getElementById('headerSub');
+  sub.textContent = 'Online';
+  sub.style.color = '';
+}
+
+// ── OCR ishga tushirish ──
+async function runOcr() {
+  if (!pendingOcrImg) {
+    addMsg("First upload an image using the 🖼️ button!", 'chat');
+    return;
+  }
+  showTyping();
+  await new Promise(r => setTimeout(r, 600));
+  hideTyping();
+  addMsg("Image received, reading text... 🔍", 'chat');
+  try {
+    showTyping();
+    const result = await Tesseract.recognize(pendingOcrImg, 'eng+rus', { logger: () => {} });
+    hideTyping();
+    const txt = result.data.text.trim();
+    pendingOcrImg = null;
+    if (txt) {
+      addMsg("📄 Rasmdagi matn:\n\n" + txt, 'chat');
+    } else {
+      addMsg("No text found in the image. Upload a higher quality image 🖼️", 'chat');
+    }
+  } catch(err) {
+    hideTyping();
+    addMsg("An error occurred. Please try again. ⚠️", 'chat');
+  }
+}
+
+// ── Send ──
+async function send() {
+  const text = inputEl.value.trim();
+  if (!text) return;
+  inputEl.value = '';
+  addMsg(text, 'user');
+
+  if (isOcrRequest(text)) {
+    await runOcr();
+  } else if (isPhoneRequest(text)) {
+    showTyping();
+    await new Promise(r => setTimeout(r, 600));
+    hideTyping();
+    var paction = findPhoneAction(text);
+    if (paction) {
+      await runPhoneAction(paction);
+    } else {
+      addMsg(getReply(text), 'chat');
+    }
+  } else if (isVideoRequest(text)) {
+    showTyping();
+    await new Promise(r => setTimeout(r, 800));
+    hideTyping();
+    const vfile = findVideoFile(text);
+    if (vfile) {
+      addMsg("Video is being prepared... 🎬", 'chat');
+      renderVideo(vfile, text);
+    } else {
+      addMsg(getReply(text), 'chat');
+    }
+  } else if (isImageRequest(text)) {
+    showTyping();
+    await new Promise(r => setTimeout(r, 800));
+    hideTyping();
+    const rule = findImageRule(text);
+    if (rule) {
+      addMsg("Image is being prepared... 🎨", 'chat');
+      renderImage(rule.file, text, rule.video);
+    } else {
+      // Rasm yo'q — oddiy javob qaytaradi, hech narsa demaydi
+      addMsg(getReply(text), 'chat');
+    }
+  } else {
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg(getReply(text), 'chat');
+    }, 1200 + Math.random() * 800);
+  }
+}
+
+// ── OCR fayl ──
+ocrBtn.addEventListener('click', () => ocrFile.click());
+
+ocrFile.addEventListener('change', function() {
+  const file = this.files[0];
+  if (!file) return;
+  this.value = '';
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    pendingOcrImg = ev.target.result;
+    renderOcrPreview(pendingOcrImg, true);
+    showTyping();
+    setTimeout(() => {
+      hideTyping();
+      addMsg("Image received 🖼️\nWrite so I can read the text in the image:\n\"Read the text in the image\"", 'chat');
+    }, 500);
+  };
+  reader.readAsDataURL(file);
+});
+
+sendBtnEl.addEventListener('click', send);
+inputEl.addEventListener('keydown', e => { if (e.key === 'Enter') send(); });
+
+// ── Ishga tushirish (XHR sync — APK + GitHub Pages da ishlaydi) ──
+(function(){
+  TXT_FILES.forEach(function(f) {
+    try {
+      var x = new XMLHttpRequest();
+      x.open('GET', f, false);
+      x.send();
+      if (x.responseText) {
+        var parsed = parse(x.responseText);
+        parsed.forEach(function(p) {
+          var ex = rules.find(function(r){ return r.k === p.k; });
+          if (ex) ex.replies.push.apply(ex.replies, p.replies);
+          else rules.push(p);
+        });
+      }
+    } catch(e) {}
+  });
+  document.getElementById('headerSub').textContent = 'Online';
+  var hadLog = loadChatLog();
+  if (!hadLog) {
+    addMsg("Assalomu alaykum! Savolingizni yozing 👇", 'chat');
+  }
+})();
+</script>
+</body>
+</html>.
