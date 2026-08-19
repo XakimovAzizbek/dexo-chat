@@ -1,4 +1,4 @@
-# DEXO CHAT BOT — telephone.txt
+# DEXO CHAT — telephone.txt
 # Telefonni boshqarish uchun
 #
 # Format:
@@ -13,10 +13,10 @@
 #   OPEN:https://t.me/dexo  — Telegram kanalga o'tish
 #   OPEN:https://youtube.com — YouTube ochish
 
-user: fonarni yoq, Telefonim chirogʻini yoq, 
+user: fonarni yoq, Telefonim chirogʻini yoq, Telefon chirogʻini yoq
 action: TORCH_ON
 
-user: Turn on the flashlight, Turn on my phone's flashlight, 
+user: Turn on the flashlight, Turn on my phone's flashlight, Turn on the phone's flashlight.
 action: TORCH_ON
 
 
