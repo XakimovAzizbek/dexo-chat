@@ -13,7 +13,7 @@
 #   OPEN:https://t.me/dexo  — Telegram kanalga o'tish
 #   OPEN:https://youtube.com — YouTube ochish
 
-user: fonarni yoq, Telefonim chirogʻini yoq, Telefon chirogʻini yoq, chiroqni yoq
+user: fonarni yoq, Telefonim chirogʻini yoq, Telefon chirogʻini yoq, chiroqni yoq, tel chirogʻini yoq
 action: TORCH_ON
 
 user: Turn on the flashlight, Turn on my phone's flashlight, Turn on the phone's flashlight.
@@ -94,3 +94,6 @@ action: OPEN:googlegmail://
 
 user: soat 5 ga budilnik qoy
 action: OPEN:intent:///#Intent;action=android.intent.action.SET_ALARM;i.HOUR=5;i.MINUTES=0;end
+
+user: AVO BANK ilovasiga kir
+action: OPEN:https://ya.cc/t/3ZOYC37-AqgDzY/?erid=j1SUn4MhiKDCxS1gD
