@@ -51,7 +51,7 @@ action: OPEN:https://youtube.com
 user: instagramga kir, Instagram kir, instagram och, Instagram och
 action: OPEN:https://instagram.com
 
-user: go to instagram
+user: go to instagram, instagram open
 action: OPEN:https://instagram.com
 
 
