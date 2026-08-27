@@ -97,3 +97,48 @@ action: OPEN:intent:///#Intent;action=android.intent.action.SET_ALARM;i.HOUR=5;i
 
 user: AVO BANK ilovasiga kir
 action: OPEN:https://ya.cc/t/3ZOYC37-AqgDzY/?erid=j1SUn4MhiKDCxS1gD
+
+user: whatsappga kir, whatsapp och
+action: OPEN:whatsapp://
+
+user: tiktokga kir, tiktok och
+action: OPEN:snssdk1233://
+
+user: facebookga kir, facebook och
+action: OPEN:fb://
+
+user: spotifyga kir
+action: OPEN:spotify://
+
+user: twitterga kir, x ilovasiga kir
+action: OPEN:twitter://
+
+user: pinterestga kir
+action: OPEN:pinterest://
+
+user: snapchatga kir
+action: OPEN:snapchat://
+
+user: discordga kir
+action: OPEN:discord://
+
+user: linkedinga kir
+action: OPEN:linkedin://
+
+user: viberga kir
+action: OPEN:viber://
+
+user: play marketga kir, play marketni och
+action: OPEN:market://
+
+user: netflixga kir
+action: OPEN:nflx://
+
+user: zoomga kir
+action: OPEN:zoomus://
+
+user: uberga kir
+action: OPEN:uber://
+
+user: kaspiga kir
+action: OPEN:kaspi://
