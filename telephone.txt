@@ -128,11 +128,11 @@ action: OPEN:linkedin://
 user: viberga kir
 action: OPEN:viber://
 
-user: play marketga kir, play marketni och
-action: OPEN:market://
+user: play marketga kir
+action: OPEN:https://play.google.com/store
 
 user: open play market
-action: OPEN:market://
+action: OPEN:https://play.google.com/store
 
 user: netflixga kir
 action: OPEN:nflx://
