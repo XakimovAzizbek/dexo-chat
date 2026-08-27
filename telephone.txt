@@ -131,6 +131,9 @@ action: OPEN:viber://
 user: play marketga kir, play marketni och
 action: OPEN:market://
 
+user: open play market
+action: OPEN:market://
+
 user: netflixga kir
 action: OPEN:nflx://
 
