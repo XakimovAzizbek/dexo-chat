@@ -4,3 +4,7 @@ video: https://xakimovazizbek.github.io/dexo-chat-bot/lv_0_20260816231104.mp4
 
 user: Samsung s22 ultra uchun video yasab ber
 video: https://github.com/XakimovAzizbek/dexo-chat-bot/releases/download/video/lv_0_20260817091039.mp4
+
+
+user: Shoxrux ismi uchun video yasab ber
+:video: https://github.com/XakimovAzizbek/dexo-chat/releases/download/1/lv_0_20260909100544.mp4
